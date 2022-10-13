@@ -16,7 +16,7 @@ public interface MstBranchService {
 
     void deleteById(String id);
 
-    UpdateBranchDTO getBranchToUpdate(String id);
+
 
     Page<MstBranch> getAllBranch(Pageable pageable, String name, String id, String type, String address, String createdBy, String updatedBy);
 }

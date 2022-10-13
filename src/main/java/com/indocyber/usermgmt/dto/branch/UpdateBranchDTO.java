@@ -21,19 +21,18 @@ public class UpdateBranchDTO {
     private boolean flag_active;
 
 
-    @NotBlank(message="Updated By is required.")
-    private String update_by;
+
 
     public UpdateBranchDTO() {
     }
 
-    public UpdateBranchDTO(String id, String name, String type, String address, boolean flag_active, String update_by) {
+    public UpdateBranchDTO(String id, String name, String type, String address, boolean flag_active) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.address = address;
         this.flag_active = flag_active;
-        this.update_by = update_by;
+
     }
 
     public String getId() {
@@ -76,23 +75,4 @@ public class UpdateBranchDTO {
         this.address = address;
     }
 
-    public String getUpdate_by() {
-        return update_by;
-    }
-
-    public void setUpdate_by(String update_by) {
-        this.update_by = update_by;
-    }
-
-    @Override
-    public String toString() {
-        return "UpdateBranchDTO{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", address='" + address + '\'' +
-                ", flag_active=" + flag_active +
-                ", update_by='" + update_by + '\'' +
-                '}';
-    }
 }

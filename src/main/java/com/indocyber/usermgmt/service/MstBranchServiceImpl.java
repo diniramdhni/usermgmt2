@@ -7,6 +7,8 @@ import com.indocyber.usermgmt.repository.MstBranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +20,8 @@ public class MstBranchServiceImpl implements MstBranchService {
 
     @Autowired
     private MstBranchRepository mst_branchRepository;
+
+
 
     @Override
     public MstBranch insertBranch(InsertBranchDTO dto) {
@@ -66,12 +70,14 @@ public class MstBranchServiceImpl implements MstBranchService {
     public MstBranch updateBranchById(UpdateBranchDTO updateDto, String id) {
         MstBranch branchById = getBranchById(id);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (branchById != null){
             branchById.setName(updateDto.getName());
             branchById.setType(updateDto.getType());
             branchById.setAddress(updateDto.getAddress());
             branchById.setUpdatedDate(LocalDateTime.now());
-            branchById.setUpdatedBy(updateDto.getUpdate_by());
+            branchById.setUpdatedBy(authentication.getName());
         }
 
         mst_branchRepository.save(branchById);
@@ -84,20 +90,5 @@ public class MstBranchServiceImpl implements MstBranchService {
         mst_branchRepository.deleteById(id);
     }
 
-    @Override
-    public UpdateBranchDTO getBranchToUpdate(String id) {
 
-        MstBranch branchTemp = getBranchById(id);
-
-        UpdateBranchDTO updateBranchDTO = new UpdateBranchDTO(
-                branchTemp.getId(),
-                branchTemp.getName(),
-                branchTemp.getType(),
-                branchTemp.getAddress(),
-                branchTemp.isFlagActive(),
-                branchTemp.getUpdatedBy()
-        );
-
-        return updateBranchDTO;
-    }
 }

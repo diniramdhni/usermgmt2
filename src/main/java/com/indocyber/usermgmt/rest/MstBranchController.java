@@ -1,5 +1,6 @@
 package com.indocyber.usermgmt.rest;
 
+import com.indocyber.usermgmt.ApplicationUserDetails;
 import com.indocyber.usermgmt.dto.branch.InsertBranchDTO;
 import com.indocyber.usermgmt.dto.branch.UpdateBranchDTO;
 import com.indocyber.usermgmt.entity.MstBranch;
@@ -13,6 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,6 +27,7 @@ public class MstBranchController {
 
     @Autowired
     private MstBranchService mst_branchService;
+
 
     private final Integer maxRows = 10;
 
@@ -72,7 +77,9 @@ public class MstBranchController {
 
             }else{
 
+
                 MstBranch branchUpdate = mst_branchService.updateBranchById( updateDto, id);
+
 
                 return new ResponseEntity<>(branchUpdate, HttpStatus.ACCEPTED);
             }
@@ -117,7 +124,7 @@ public class MstBranchController {
                 return new ResponseEntity<>(branch, HttpStatus.OK);
             }
         } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("There is a run-time error on the server.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 
         }
     }
