@@ -1,10 +1,8 @@
 package com.indocyber.usermgmt.rest;
 
-import com.indocyber.usermgmt.ApplicationUserDetails;
 import com.indocyber.usermgmt.dto.branch.InsertBranchDTO;
 import com.indocyber.usermgmt.dto.branch.UpdateBranchDTO;
 import com.indocyber.usermgmt.entity.MstBranch;
-//import com.indocyber.usermgmt.errorHandler.NotFoundException;
 import com.indocyber.usermgmt.exception.NotFoundException;
 import com.indocyber.usermgmt.service.MstBranchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

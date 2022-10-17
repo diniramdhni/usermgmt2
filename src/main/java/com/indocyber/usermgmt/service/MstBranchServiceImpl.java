@@ -46,8 +46,13 @@ public class MstBranchServiceImpl implements MstBranchService {
     public Page<MstBranch> getAllBranch(Pageable pageable, String name, String id, String type, String address, String createdBy, String updatedBy) {
 
         String name2 = name.toUpperCase(Locale.ROOT);
+        String address2 = address.toUpperCase(Locale.ROOT);
+        String id2 = id.toUpperCase(Locale.ROOT);
+        String type2 = type.toUpperCase(Locale.ROOT);
+        String createdBy2 = createdBy.toUpperCase(Locale.ROOT);
+        String updatedBy2 = updatedBy.toUpperCase(Locale.ROOT);
 
-        Page<MstBranch> grid = mst_branchRepository.findAllBranch(pageable, name2, id, type, address, createdBy, updatedBy);
+        Page<MstBranch> grid = mst_branchRepository.findAllBranch(pageable, name2, id2, type2, address2, createdBy2, updatedBy2);
 
         System.out.println("ini grid branch service "+ grid);
         return grid;
