@@ -20,8 +20,7 @@ public class InsertBranchDTO {
     @NotNull(message="Flag active is required.")
     private boolean flag_active;
 
-    @NotBlank(message="Created By is required.")
-    private String created_by;
+    private String created_by = "SYSTEM";
 
     public InsertBranchDTO(){}
 
