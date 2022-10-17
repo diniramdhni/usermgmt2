@@ -27,7 +27,8 @@ public class RestSecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
         http.antMatcher("/**").csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/forgotpwd", "/forgotpwd/process").permitAll()
+                .antMatchers("/login", "/forgotpwd", "/forgotpwd/process",
+                        "/branch/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

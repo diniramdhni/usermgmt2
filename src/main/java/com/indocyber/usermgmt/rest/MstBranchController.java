@@ -41,10 +41,9 @@ public class MstBranchController {
     @GetMapping("/list")
     public ResponseEntity<Object> listBranch(@RequestParam(defaultValue = "1") Integer page,
                                              @RequestParam(defaultValue = "") String id,
-                                                       @RequestParam(defaultValue = "") String name,
+                                             @RequestParam(defaultValue = "") String name,
                                              @RequestParam(defaultValue = "") String type,
                                              @RequestParam(defaultValue = "") String address,
-//                                             @RequestParam(defaultValue = "") boolean flagActive,
                                              @RequestParam(defaultValue = "") String createdBy,
                                              @RequestParam(defaultValue = "") String updatedBy){
 
